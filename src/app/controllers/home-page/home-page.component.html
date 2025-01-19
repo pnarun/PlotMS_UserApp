@@ -1,0 +1,35 @@
+<div class="hero-section">
+  <h1>Find Real Estate and Get Your Dream Space</h1>
+  <p>Renowned for Residential Plots, Trusted by Thousands.</p>
+
+  <div class="search-container">
+    <div class="search-box">
+      <select [(ngModel)]="selectedPropertyType">
+        <option value="">Property type</option>
+        <option value="residential">Residential</option>
+        <option value="commercial">Commercial</option>
+      </select>
+
+      <input 
+        type="text" 
+        [(ngModel)]="searchQuery"
+        placeholder="Search by location or Project Name.."
+      >
+
+      <button (click)="onSearch()">Search</button>
+    </div>
+  </div>
+</div>
+
+<section id="projects" class="projects-section">
+  <h2>Our Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card" *ngFor="let project of projects">
+      <img [src]="project.imageUrl" 
+           [alt]="project.name"
+           onerror="this.src='assets/images/placeholder.jpg'; this.onerror=null;">
+      <h3>{{project.name}}</h3>
+      <p>{{project.location}}</p>
+    </div>
+  </div>
+</section>
