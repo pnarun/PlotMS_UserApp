@@ -3,6 +3,7 @@ export interface Project {
   name: string;
   location: string;
   imageUrl: string;
+  siteMapUrl: string;
   propertyType: string;
   description?: string;
   availablePlots?: number;

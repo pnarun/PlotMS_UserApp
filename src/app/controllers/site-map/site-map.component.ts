@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { Project } from '../../models/project.interface';
 import { ProjectService } from '../../services/project.service';
 import { MsgBoxComponent } from '../shared/msg-box/msg-box.component';
@@ -27,6 +28,8 @@ export class SiteMapComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
     private projectService: ProjectService
   ) {}
 
@@ -71,7 +74,7 @@ export class SiteMapComponent implements OnInit {
       // Plot is booked
       this.isValidInput = false;
       this.showError = true;
-      this.errorMessage = 'Plot is already booked';
+      this.errorMessage = 'Selected Plot is already booked. Please choose another plot.';
     }
   }
 
@@ -92,5 +95,13 @@ export class SiteMapComponent implements OnInit {
     this.isBooked = false;
     this.showError = false;
     this.errorMessage = '';
+  }
+
+  goBack() {
+    this.location.back();
+  }
+
+  handleImageError(event: any) {
+    event.target.src = 'assets/images/placeholder.jpg'; // Fallback image
   }
 }

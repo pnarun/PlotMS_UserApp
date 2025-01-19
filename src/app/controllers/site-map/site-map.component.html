@@ -1,5 +1,8 @@
 <div class="site-map">
   <div class="content">
+    <div class="back-button" (click)="goBack()"><b><</b>
+    </div>
+    
     <h2>Site map of {{ projectName }}</h2>
     
     <div class="search-container">
@@ -9,7 +12,7 @@
           [(ngModel)]="searchQuery"
           [min]="1"
           [max]="maxPlots"
-          placeholder="Enter Plot Number.."
+          placeholder="Enter Plot Number (1 - {{ maxPlots }})"
           (input)="validatePlotNumber()"
           [class.error]="showError"
         >
@@ -22,6 +25,13 @@
       <div class="error-message" *ngIf="showError">
         {{ errorMessage }}
       </div>
+    </div>
+
+    <div class="sitemap-image-container" *ngIf="currentProject?.siteMapUrl">
+      <img [src]="currentProject?.siteMapUrl" 
+           [alt]="projectName + ' Site Map'"
+           class="sitemap-image"
+           (error)="handleImageError($event)">
     </div>
   </div>
 </div>

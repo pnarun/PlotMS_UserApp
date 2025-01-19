@@ -1,16 +1,3 @@
-<header class="header">
-  <a routerLink="/home" class="logo">
-    <img src="assets/images/logo/sjd-logo.png" alt="SJD Developers">
-    <span>SJD Developers</span>
-  </a>
-  <nav class="nav-links">
-    <a routerLink="/home" 
-       [fragment]="'projects'" 
-       routerLinkActive="active">Projects</a>
-    <a routerLink="/our-story" routerLinkActive="active">Our Story</a>
-    <a routerLink="/contact-us" routerLinkActive="active">Contact Us</a>
-  </nav>
-</header>
-
+<app-header></app-header>
 <router-outlet></router-outlet>
 <app-footer></app-footer>

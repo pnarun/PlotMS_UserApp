@@ -1,1 +1,111 @@
-<p>contact-us works!</p>
+<div class="contact-us">
+  <div class="hero-section">
+    <h1>Contact Us</h1>
+    <p class="subtitle">We'd Love to Hear From You</p>
+  </div>
+
+  <div class="content-container">
+    <div class="contact-grid">
+      <!-- Contact Information -->
+      <div class="contact-info">
+        <h2>Get in Touch</h2>
+        <p class="info-text">Have questions about our projects? Fill out the form and we'll be in touch shortly.</p>
+        
+        <div class="info-items">
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h3>Visit Us</h3>
+              <p>Tumkur, Karnataka</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h3>Call Us</h3>
+              <p>+91 9876543210</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Email Us</h3>
+              <p>info&#64;sjddevelopers.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form">
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="name">Name*</label>
+            <input 
+              type="text" 
+              id="name" 
+              formControlName="name"
+              [class.error]="isFieldInvalid('name')"
+            >
+            <div class="error-message" *ngIf="isFieldInvalid('name')">
+              Please enter your name
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number*</label>
+            <input 
+              type="tel" 
+              id="phone" 
+              formControlName="phone"
+              [class.error]="isFieldInvalid('phone')"
+            >
+            <div class="error-message" *ngIf="isFieldInvalid('phone')">
+              Please enter a valid 10-digit phone number
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="city">City</label>
+            <input 
+              type="text" 
+              id="city" 
+              formControlName="city"
+              [class.error]="isFieldInvalid('city')"
+            >
+            <div class="error-message" *ngIf="isFieldInvalid('city')">
+              Please enter your city
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message*</label>
+            <textarea 
+              id="message" 
+              rows="4" 
+              formControlName="message"
+              [class.error]="isFieldInvalid('message')"
+            ></textarea>
+            <div class="error-message" *ngIf="isFieldInvalid('message')">
+              Please enter your message
+            </div>
+          </div>
+
+          <button 
+            type="submit" 
+            [disabled]="contactForm.invalid || isSubmitting"
+          >
+            {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+          </button>
+        </form>
+      
+        <div class="success-message" *ngIf="showSuccessMessage">
+            <p>Thank you for contacting us {{submittedName}}. We will try our best to connect back with you as soon as possible.</p>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
