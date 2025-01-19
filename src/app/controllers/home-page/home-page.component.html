@@ -25,10 +25,12 @@
   <h2>Our Projects</h2>
   <div class="projects-grid">
     <div class="project-card" *ngFor="let project of projects">
-      <img [src]="project.imageUrl" 
-           [alt]="project.name"
-           onerror="this.src='assets/images/placeholder.jpg'; this.onerror=null;">
-      <h3>{{project.name}}</h3>
+      <div class="clickable" [routerLink]="['/site-map', project.id]">
+        <img [src]="project.imageUrl" 
+             [alt]="project.name"
+             onerror="this.src='assets/images/placeholder.jpg'; this.onerror=null;">
+        <h3>{{project.name}}</h3>
+      </div>
       <p>{{project.location}}</p>
     </div>
   </div>

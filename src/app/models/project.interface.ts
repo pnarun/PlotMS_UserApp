@@ -5,4 +5,6 @@ export interface Project {
   imageUrl: string;
   propertyType: string;
   description?: string;
+  availablePlots?: number;
+  availablePlotsArray?: number[];
 } 

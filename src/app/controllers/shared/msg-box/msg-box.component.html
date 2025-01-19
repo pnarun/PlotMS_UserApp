@@ -1,1 +1,37 @@
-<p>msg-box works!</p>
+<div class="overlay" *ngIf="show">
+  <div class="msg-box">
+    <div class="close-btn" (click)="onClose()">×</div>
+    
+    <div class="msg-content">
+      <h3>Project - {{ projectName }}</h3>
+      <p class="plot-number">Plot Number - {{ plotNumber }}</p>
+      <p class="interested">Interested to Buy?</p>
+      <p class="whatsapp">Get Quote on Whatsapp,</p>
+      
+      <div class="mobile-input">
+        <span class="prefix">+91 -</span>
+        <input 
+          type="tel" 
+          [(ngModel)]="mobileNumber"
+          placeholder="Mobile Number"
+          maxlength="10"
+          pattern="[0-9]*"
+        >
+      </div>
+
+      <div class="button-group">
+        <button class="cancel-btn" (click)="onClose()">Cancel</button>
+        <button 
+          class="quote-btn" 
+          [disabled]="!isValidMobile() || quoteSent"
+          (click)="getQuote()">
+          Get Quote
+        </button>
+      </div>
+
+      <p class="success-message" *ngIf="quoteSent">
+        The Plot Quote will be shared to you via WhatsApp
+      </p>
+    </div>
+  </div>
+</div>

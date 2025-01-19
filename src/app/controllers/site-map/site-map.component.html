@@ -1,1 +1,34 @@
-<p>site-map works!</p>
+<div class="site-map">
+  <div class="content">
+    <h2>Site map of {{ projectName }}</h2>
+    
+    <div class="search-container">
+      <div class="search-box">
+        <input 
+          type="number" 
+          [(ngModel)]="searchQuery"
+          [min]="1"
+          [max]="maxPlots"
+          placeholder="Enter Plot Number.."
+          (input)="validatePlotNumber()"
+          [class.error]="showError"
+        >
+        <button 
+          [disabled]="!isValidInput"
+          (click)="onSearch()">
+          Search
+        </button>
+      </div>
+      <div class="error-message" *ngIf="showError">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-msg-box
+  [show]="showMsgBox"
+  [projectName]="projectName"
+  [plotNumber]="searchQuery"
+  (close)="closeMsgBox()"
+></app-msg-box>
