@@ -6,6 +6,6 @@ export interface Project {
   siteMapUrl: string;
   propertyType: string;
   description?: string;
-  availablePlots?: number;
+  maxPlots?: number;
   availablePlotsArray?: number[];
 } 

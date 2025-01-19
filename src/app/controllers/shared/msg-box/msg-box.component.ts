@@ -16,16 +16,44 @@ export class MsgBoxComponent {
   @Output() close = new EventEmitter<void>();
   
   mobileNumber: string = '';
+  userName: string = '';
   quoteSent: boolean = false;
+  showNameError = false;
+  nameErrorMessage = '';
 
   onClose() {
     this.mobileNumber = '';
+    this.userName = '';
     this.quoteSent = false;
     this.close.emit();
   }
 
   isValidMobile(): boolean {
     return /^[0-9]{10}$/.test(this.mobileNumber);
+  }
+
+  onNameChange() {
+    const name = this.userName.trim();
+    if (name.length === 0) {
+      this.showNameError = false;
+      return;
+    }
+    if (name.length < 3) {
+      this.showNameError = true;
+      this.nameErrorMessage = 'Name must be at least 3 characters long';
+      return;
+    }
+    if (!/^[a-zA-Z\s]+$/.test(name)) {
+      this.showNameError = true;
+      this.nameErrorMessage = 'Name should contain only letters';
+      return;
+    }
+    this.showNameError = false;
+  }
+
+  isNameValid(): boolean {
+    const name = this.userName.trim();
+    return name.length >= 3 && /^[a-zA-Z\s]+$/.test(name);
   }
 
   getQuote() {

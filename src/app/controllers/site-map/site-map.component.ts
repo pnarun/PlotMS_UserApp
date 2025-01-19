@@ -17,8 +17,8 @@ import { MsgBoxComponent } from '../shared/msg-box/msg-box.component';
 export class SiteMapComponent implements OnInit {
   projectName: string = '';
   searchQuery: number | null = null;
-  maxPlots: number = 0;
-  availablePlots: number[] = [];
+  max_plots: number = 0;
+  maxPlots: number[] = [];
   isValidInput: boolean = false;
   isBooked: boolean = false;
   showError: boolean = false;
@@ -40,8 +40,8 @@ export class SiteMapComponent implements OnInit {
         const project = projects.find(p => p.id.toString() === projectId);
         if (project) {
           this.projectName = project.name;
-          this.maxPlots = project.availablePlots || 0;
-          this.availablePlots = project.availablePlotsArray || [];
+          this.max_plots = project.maxPlots || 0;
+          this.maxPlots = project.availablePlotsArray || [];
           this.currentProject = project;
         }
       });
@@ -57,15 +57,15 @@ export class SiteMapComponent implements OnInit {
     const plotNumber = Number(this.searchQuery);
     
     // First check if the number is within valid range
-    if (plotNumber < 1 || plotNumber > this.maxPlots) {
+    if (plotNumber < 1 || plotNumber > this.max_plots) {
       this.showError = true;
-      this.errorMessage = 'Please enter valid plot number between 1 and ' + this.maxPlots;
+      this.errorMessage = 'Please enter valid plot number between 1 and ' + this.max_plots;
       this.isValidInput = false;
       return;
     }
 
     // Check if the plot is available
-    if (this.availablePlots.includes(plotNumber)) {
+    if (this.maxPlots.includes(plotNumber)) {
       // Plot is available
       this.isValidInput = true;
       this.showError = false;
